@@ -6,17 +6,17 @@
 # define LEN sizeof(struct Goods)
 
 struct Goods {
-char num[10];  /*ÊıÁ¿*/
-char name[20]; /*ÉÌÆ·Ãû³Æ*/
-char price[10];  /*¼Û¸ñ*/
+char num[10];  /*æ•°é‡*/
+char name[20]; /*å•†å“åç§°*/
+char price[10];  /*ä»·æ ¼*/
 
 
 struct Goods *next;
 };
 
-char filename[30];//È«¾Ö±äÁ¿£¬ÓÃÀ´±£´æÒª´ò¿ªµÄÎÄ¼şÃû×Ö
+char filename[30];//å…¨å±€å˜é‡ï¼Œç”¨æ¥ä¿å­˜è¦æ‰“å¼€çš„æ–‡ä»¶åå­—
 
-/*Éú³ÉÁ´±í*/
+/*ç”Ÿæˆé“¾è¡¨*/
 struct Goods *Creat(int n) {
 	void menu_print_in(void);
 	struct Goods *head;
@@ -26,11 +26,11 @@ struct Goods *Creat(int n) {
 	for(int i=1;i<n+1;i++) {
 		p1 = (struct Goods*)malloc(LEN);
 		
-		printf("\t\tÇëÊäÈëÉÌÆ·¸öÊı:");
+		printf("\t\tè¯·è¾“å…¥å•†å“ä¸ªæ•°:");
 		scanf("%s",p1->num);
-		printf("\t\tÇëÊäÈëÉÌÆ·Ãû:");
+		printf("\t\tè¯·è¾“å…¥å•†å“å:");
 		scanf("%s",p1->name);
-		printf("\t\tÇëÊäÈëÉÌÆ·¼Û¸ñ:");
+		printf("\t\tè¯·è¾“å…¥å•†å“ä»·æ ¼:");
 		scanf("%s",p1->price);
 		p1->next = NULL;
 		if(i==1) {
@@ -44,7 +44,7 @@ struct Goods *Creat(int n) {
 	return(head);
 }
 
-/*Êı¾İ´æÅÌ(wbÖ»Ğ´)*/
+/*æ•°æ®å­˜ç›˜(wbåªå†™)*/
 void WriteData_wb(struct Goods *head) {
 	FILE *fp;
 	struct Goods *p;
@@ -53,7 +53,7 @@ void WriteData_wb(struct Goods *head) {
 	p = head;
 	while(p!=NULL) {
 		if(fwrite(p,LEN,1,fp)!=1) {
-			printf("Ğ´ÈëÊı¾İ³ö´í\n");
+			printf("å†™å…¥æ•°æ®å‡ºé”™\n");
 			fclose(fp);
 			return;
 		}
@@ -62,7 +62,7 @@ void WriteData_wb(struct Goods *head) {
 	fclose(fp);
 }
 
-/*Êı¾İ´æÅÌ(ab×·¼Ó)*/
+/*æ•°æ®å­˜ç›˜(abè¿½åŠ )*/
 void WriteData_ab(struct Goods *head) {
 	FILE *fp;
 	struct Goods *p;
@@ -71,7 +71,7 @@ void WriteData_ab(struct Goods *head) {
 	p = head;
 	while(p!=NULL) {
 	if(fwrite(p,LEN,1,fp)!=1) {
-			printf("Ğ´ÈëÊı¾İ³ö´í\n");
+			printf("å†™å…¥æ•°æ®å‡ºé”™\n");
 			fclose(fp);
 			return;
 		}
@@ -81,8 +81,8 @@ void WriteData_ab(struct Goods *head) {
 }
 
 
-/*¶ÁÈ¡Êı¾İ*/
-/*¶ÁÈ¡Êı¾İÎÄ¼ş±£´æµ½Á´±íÖĞ £¬·µ»ØÖ¸Ïò´ËÁ´±íÍ·Ö¸Õë*/
+/*è¯»å–æ•°æ®*/
+/*è¯»å–æ•°æ®æ–‡ä»¶ä¿å­˜åˆ°é“¾è¡¨ä¸­ ï¼Œè¿”å›æŒ‡å‘æ­¤é“¾è¡¨å¤´æŒ‡é’ˆ*/
 struct Goods *ReadData(void) {
 	struct Goods *head = NULL;
 	struct Goods *p1, *p2;//s = p1;p = p2;
@@ -90,12 +90,12 @@ struct Goods *ReadData(void) {
 	FILE *fp;
 	if((fp=fopen(filename,"rb+"))==NULL)
 	{
-		printf("´ò¿ªÎÄ¼ş³ö´í\n");
+		printf("æ‰“å¼€æ–‡ä»¶å‡ºé”™\n");
 		exit(0);
 	}
 	while(!feof(fp)) {
 		if((p1=(struct Goods*)malloc(LEN))==NULL){
-			printf("ÄÚ´æÉêÇë³ö´í\n");
+			printf("å†…å­˜ç”³è¯·å‡ºé”™\n");
 			fclose(fp);
 			exit(0);
 		}
@@ -114,7 +114,7 @@ struct Goods *ReadData(void) {
 	return (head);
 }
 
-/*¡¾1¡¿È«Á¿²éÑ¯*/
+/*ã€1ã€‘å…¨é‡æŸ¥è¯¢*/
 void Print_inquire_all(void) {
 	void menu_print_out(void);
 	struct Goods *pt;
@@ -129,12 +129,12 @@ void Print_inquire_all(void) {
 }
 
 
-/*¡¾2¡¿ÉÌÆ·Ãû²éÑ¯*/
+/*ã€2ã€‘å•†å“åæŸ¥è¯¢*/
 int Print_inquire_name() {
 	void menu_print_out(void);
 	struct Goods *pt;
 	char str_name[20];
-	printf("¡òÇëÊäÈëÄúÒª²éÑ¯µÄÃû³Æ:");
+	printf("â—è¯·è¾“å…¥æ‚¨è¦æŸ¥è¯¢çš„åç§°:");
 	scanf("%s", str_name);
 	pt = ReadData();
 	menu_print_out();
@@ -147,18 +147,18 @@ int Print_inquire_name() {
 		}
 		pt = pt->next;
 	}while(pt!=NULL);
-	printf("Êı¾İ¿âÖĞÃ»ÓĞ´æ´¢ÄúÒª²éÑ¯µÄÊı¾İ£¡\n");
+	printf("æ•°æ®åº“ä¸­æ²¡æœ‰å­˜å‚¨æ‚¨è¦æŸ¥è¯¢çš„æ•°æ®ï¼\n");
 	printf("\n\n");
 	return 0;
 }
 
 
 
-/*¡¾1¡¿ĞŞ¸ÄÊı¾İÖ®É¾³ı¼ÇÂ¼*/
+/*ã€1ã€‘ä¿®æ”¹æ•°æ®ä¹‹åˆ é™¤è®°å½•*/
 int Delete() {
 	struct Goods *pt1, *pt2, *head;
 	char str_num[20];
-	printf("\n¡òÇëÊäÈëÄúÒªÉ¾³ıµÄÉÌÆ·ĞÅÏ¢:");
+	printf("\nâ—è¯·è¾“å…¥æ‚¨è¦åˆ é™¤çš„å•†å“ä¿¡æ¯:");
 	scanf("%s", str_num);
 	pt1 = ReadData();
 	pt2 = pt1->next;
@@ -175,17 +175,17 @@ int Delete() {
 		pt1 = pt1->next;
 	}
 	if(pt2!=NULL)
-	printf("Êı¾İ¿âÖĞÃ»ÓĞ´æ´¢ÄúÒªÉ¾³ıµÄÊı¾İ£¡\n");
+	printf("æ•°æ®åº“ä¸­æ²¡æœ‰å­˜å‚¨æ‚¨è¦åˆ é™¤çš„æ•°æ®ï¼\n");
 	printf("\n\n");
 	return 0;
 }
 
-/*¡¾2¡¿ĞŞ¸ÄÊı¾İÖ®ĞŞ¸Ä¼ÇÂ¼*/
+/*ã€2ã€‘ä¿®æ”¹æ•°æ®ä¹‹ä¿®æ”¹è®°å½•*/
 int Amend() {
 	void menu_print_in(void);
 	struct Goods *pt1, *pt2, *head;
 	char str_num[20];
-	printf("¡òÇëÊäÈëÄúÒªĞŞ¸ÄµÄÉÌÆ·ĞÅÏ¢:");
+	printf("â—è¯·è¾“å…¥æ‚¨è¦ä¿®æ”¹çš„å•†å“ä¿¡æ¯:");
 	scanf("%s", str_num);
 	pt1 = ReadData();
 	pt2 = pt1->next;
@@ -193,21 +193,21 @@ int Amend() {
 	while(pt2!=NULL) {
 		if(strcmp(pt1->num,str_num)==0) {
 			
-			printf("\t\tÇëÊäÈëÉÌÆ·¸öÊı:");
+			printf("\t\tè¯·è¾“å…¥å•†å“ä¸ªæ•°:");
 			scanf("%s",pt1->num);
-			printf("\t\tÇëÊäÈëÉÌÆ·Ãû:");
+			printf("\t\tè¯·è¾“å…¥å•†å“å:");
 			scanf("%s",pt1->name);
-			printf("\t\tÇëÊäÈëÉÌÆ·¼Û¸ñ:");
+			printf("\t\tè¯·è¾“å…¥å•†å“ä»·æ ¼:");
 			scanf("%s",pt1->price);
 			WriteData_wb(head);
 		}
 		else if(strcmp(pt2->num,str_num)==0) {
 			
-			printf("\t\tÇëÊäÈëÉÌÆ·¸öÊı:");
+			printf("\t\tè¯·è¾“å…¥å•†å“ä¸ªæ•°:");
 			scanf("%s",pt2->num);
-			printf("\t\tÇëÊäÈëÉÌÆ·Ãû:");
+			printf("\t\tè¯·è¾“å…¥å•†å“å:");
 			scanf("%s",pt2->name);
-			printf("\t\tÇëÊäÈëÉÌÆ·¼Û¸ñ:");
+			printf("\t\tè¯·è¾“å…¥å•†å“ä»·æ ¼:");
 			scanf("%s",pt2->price);
 			WriteData_wb(head);
 		}
@@ -215,11 +215,11 @@ int Amend() {
 		pt1 = pt1->next;
 	}
 	if(pt2!=NULL)
-	printf("Êı¾İ¿âÖĞÃ»ÓĞ´æ´¢ÄúÒªÉ¾³ıµÄÊı¾İ£¡\n");
+	printf("æ•°æ®åº“ä¸­æ²¡æœ‰å­˜å‚¨æ‚¨è¦åˆ é™¤çš„æ•°æ®ï¼\n");
 	return 0;
 }
 
-/*¡¾3¡¿ĞŞ¸ÄÊı¾İÖ®ÕûÀíÊı¾İ*/
+/*ã€3ã€‘ä¿®æ”¹æ•°æ®ä¹‹æ•´ç†æ•°æ®*/
 int Neaten() {
 	struct Goods *first;
 	struct Goods *tail;
@@ -260,9 +260,9 @@ int Neaten() {
 	return 0;
 }
 
-/*ÊäÈëĞ´ÈëÊı¾İµÄÊıÁ¿*/
+/*è¾“å…¥å†™å…¥æ•°æ®çš„æ•°é‡*/
 int Creat_num(void) {
-	printf("\n¡òÇëÊäÈëÄú´Ë´ÎÒªÌí¼ÓµÄÊı¾İ¸öÊı:");
+	printf("\nâ—è¯·è¾“å…¥æ‚¨æ­¤æ¬¡è¦æ·»åŠ çš„æ•°æ®ä¸ªæ•°:");
 	int n;
 	if(scanf("%d", &n)!=1) {
 		printf("\a error!");
@@ -270,30 +270,30 @@ int Creat_num(void) {
 	return n;
 }
 
-/*Ñ¡Ôñ½«Òª´ò¿ªµÄÎÄ¼ş*/
+/*é€‰æ‹©å°†è¦æ‰“å¼€çš„æ–‡ä»¶*/
 int File_name() {
-	printf("\n¡òÇëÊäÈëÄúÏëÒª´ò¿ªµÄÎÄ¼ş:");
+	printf("\nâ—è¯·è¾“å…¥æ‚¨æƒ³è¦æ‰“å¼€çš„æ–‡ä»¶:");
 	if(scanf("%s", filename)!=1)
 	printf("\a error!");
 	return 0;
 }
 
-/*Ö÷²Ëµ¥*/
+/*ä¸»èœå•*/
 void menu(void) {
 	void menu_add(void);
 	void menu_inquire(void);
 	void menu_amend(void);
-	printf("              ©³©¥©¥©¥©¥©¥©¥©¥©¥©·            \n");
-	printf("©³©¥©¥©¥©¥©¥©¥©Ï     ¹ºÎï³µ     ©Ç©¥©¥©¥©¥©¥©¥©·\n");
-	printf("©§            ©»©¥©¥©¥©¥©¥©¥©¥©¥©¿            ©§\n");
-	printf("©§   ¡¾1¡¿Ìí¼ÓÉÌÆ·           ¡¾3¡¿ĞŞ¸ÄÊı¾İ    ©§\n");
-	printf("©§                                            ©§\n");
-	printf("©§   ¡¾2¡¿²éÑ¯ÉÌÆ·           ¡¾4¡¿ÍË³öÏµÍ³    ©§\n");
-	printf("©§                                            ©§\n");
-	printf("©§Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»©§\n");
-	printf("©§                                  ¹ºÎï³µv1.0©§\n");
-	printf("©»©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¿\n");
-	printf("¡òÇëÊäÈë¹¦ÄÜÇ°µÄĞòºÅ½øÈëÏàÓ¦µÄ¹¤¾ß:");
+	printf("              â”â”â”â”â”â”â”â”â”â”“            \n");
+	printf("â”â”â”â”â”â”â”â”«     è´­ç‰©è½¦     â”£â”â”â”â”â”â”â”“\n");
+	printf("â”ƒ            â”—â”â”â”â”â”â”â”â”â”›            â”ƒ\n");
+	printf("â”ƒ   ã€1ã€‘æ·»åŠ å•†å“           ã€3ã€‘ä¿®æ”¹æ•°æ®    â”ƒ\n");
+	printf("â”ƒ                                            â”ƒ\n");
+	printf("â”ƒ   ã€2ã€‘æŸ¥è¯¢å•†å“           ã€4ã€‘é€€å‡ºç³»ç»Ÿ    â”ƒ\n");
+	printf("â”ƒ                                            â”ƒ\n");
+	printf("â”ƒä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€â”ƒ\n");
+	printf("â”ƒ                                  è´­ç‰©è½¦v1.0â”ƒ\n");
+	printf("â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›\n");
+	printf("â—è¯·è¾“å…¥åŠŸèƒ½å‰çš„åºå·è¿›å…¥ç›¸åº”çš„å·¥å…·:");
 
 	int a = 0;
 	a = getchar();
@@ -302,7 +302,7 @@ void menu(void) {
 		printf("error! please input the right number!\n");
 		putchar('\a');
 		getchar();
-		printf("¡òÇëÖØĞÂÊäÈë¹¦ÄÜÇ°µÄĞòºÅ½øÈëÏàÓ¦µÄ¹¤¾ß:");
+		printf("â—è¯·é‡æ–°è¾“å…¥åŠŸèƒ½å‰çš„åºå·è¿›å…¥ç›¸åº”çš„å·¥å…·:");
 		a = getchar();
 	}
 	switch(a) {
@@ -318,19 +318,19 @@ void menu(void) {
 	getchar();
 }
 
-/*¶ş¼¶²Ëµ¥Ö®Ìí¼ÓÊı¾İ*/
+/*äºŒçº§èœå•ä¹‹æ·»åŠ æ•°æ®*/
 void menu_add(void) {
 	system("cls");
 	getchar();
-	printf("              ©³©¥©¥©¥©¥©¥©¥©¥©¥©·              \n");
-	printf("©³©¥©¥©¥©¥©¥©¥©Ï  Ìí¼ÓÊı¾İ·½Ê½  ©Ç©¥©¥©¥©¥©¥©¥©·\n");
-	printf("©§            ©»©¥©¥©¥©¥©¥©¥©¥©¥©¿            ©§\n");
-	printf("©§ ¡¾1¡¿ĞÂ½¨ÎÄ¼ş ¡¾2¡¿ÔöÌíÊı¾İ ¡¾3¡¿·µ»Ø²Ëµ¥  ©§\n");
-	printf("©§                                            ©§\n");
-	printf("©§Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»©§\n");
-	printf("©§                                  ¹ºÎï³µv1.0©§\n");
-	printf("©»©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¿\n");
-	printf("¡òÇëÊäÈë¹¦ÄÜÇ°µÄĞòºÅ½øÈëÏàÓ¦µÄ¹¤¾ß:");
+	printf("              â”â”â”â”â”â”â”â”â”â”“              \n");
+	printf("â”â”â”â”â”â”â”â”«  æ·»åŠ æ•°æ®æ–¹å¼  â”£â”â”â”â”â”â”â”“\n");
+	printf("â”ƒ            â”—â”â”â”â”â”â”â”â”â”›            â”ƒ\n");
+	printf("â”ƒ ã€1ã€‘æ–°å»ºæ–‡ä»¶ ã€2ã€‘å¢æ·»æ•°æ® ã€3ã€‘è¿”å›èœå•  â”ƒ\n");
+	printf("â”ƒ                                            â”ƒ\n");
+	printf("â”ƒä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€â”ƒ\n");
+	printf("â”ƒ                                  è´­ç‰©è½¦v1.0â”ƒ\n");
+	printf("â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›\n");
+	printf("â—è¯·è¾“å…¥åŠŸèƒ½å‰çš„åºå·è¿›å…¥ç›¸åº”çš„å·¥å…·:");
 
 	int a = 0;
 	a = getchar();
@@ -339,18 +339,18 @@ void menu_add(void) {
 		printf("error! please input the right number!\n");
 		putchar('\a');
 		getchar();
-		printf("¡òÇëÖØĞÂÊäÈë¹¦ÄÜÇ°µÄĞòºÅ½øÈëÏàÓ¦µÄ¹¤¾ß:");
+		printf("â—è¯·é‡æ–°è¾“å…¥åŠŸèƒ½å‰çš„åºå·è¿›å…¥ç›¸åº”çš„å·¥å…·:");
 		a = getchar();
 	}
 	switch(a) {
 		case '1': WriteData_wb(Creat(Creat_num()));
-		 printf("\n¡òĞÂ½¨ÎÄ¼ş³É¹¦ÇÒÊı¾İÒÑ³É¹¦±£´æ¡ò\n");
+		 printf("\nâ—æ–°å»ºæ–‡ä»¶æˆåŠŸä¸”æ•°æ®å·²æˆåŠŸä¿å­˜â—\n");
 			 system("pause");
 		 system("cls");
 		 menu_add();
 		break;
 		case '2': WriteData_ab(Creat(Creat_num()));
-			 printf("\n¡òÊı¾İÒÑ³É¹¦Ìí¼Ó¡ò\n");
+			 printf("\nâ—æ•°æ®å·²æˆåŠŸæ·»åŠ â—\n");
 			 system("pause");
 		 system("cls");
 		 menu_add();
@@ -362,21 +362,21 @@ void menu_add(void) {
 	}
 }
 
-/*¶ş¼¶²Ëµ¥Ö®²éÑ¯Êı¾İ*/
+/*äºŒçº§èœå•ä¹‹æŸ¥è¯¢æ•°æ®*/
 void menu_inquire(void) {
 	system("cls");
 	getchar();
 	while(1) {
 	system("cls");
-	printf("              ©³©¥©¥©¥©¥©¥©¥©¥©¥©·              \n");
-	printf("©³©¥©¥©¥©¥©¥©¥©Ï  ²éÑ¯Êı¾İ·½Ê½  ©Ç©¥©¥©¥©¥©¥©¥©·\n");
-	printf("©§            ©»©¥©¥©¥©¥©¥©¥©¥©¥©¿            ©§\n");
-	printf("©§   ¡¾1¡¿È«²¿²éÑ¯ ¡¾2¡¿Ãû³Æ²éÑ¯ ¡¾3¡¿·µ»Ø²Ëµ¥©§\n");
-	printf("©§                                            ©§\n");
-	printf("©§Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»©§\n");
-	printf("©§                                  ¹ºÎï³µv1.0©§\n");
-	printf("©»©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¿\n");
-	printf("¡òÇëÊäÈë¹¦ÄÜÇ°µÄĞòºÅ½øÈëÏàÓ¦µÄ¹¤¾ß:");
+	printf("              â”â”â”â”â”â”â”â”â”â”“              \n");
+	printf("â”â”â”â”â”â”â”â”«  æŸ¥è¯¢æ•°æ®æ–¹å¼  â”£â”â”â”â”â”â”â”“\n");
+	printf("â”ƒ            â”—â”â”â”â”â”â”â”â”â”›            â”ƒ\n");
+	printf("â”ƒ   ã€1ã€‘å…¨éƒ¨æŸ¥è¯¢ ã€2ã€‘åç§°æŸ¥è¯¢ ã€3ã€‘è¿”å›èœå•â”ƒ\n");
+	printf("â”ƒ                                            â”ƒ\n");
+	printf("â”ƒä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€â”ƒ\n");
+	printf("â”ƒ                                  è´­ç‰©è½¦v1.0â”ƒ\n");
+	printf("â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›\n");
+	printf("â—è¯·è¾“å…¥åŠŸèƒ½å‰çš„åºå·è¿›å…¥ç›¸åº”çš„å·¥å…·:");
 	int a = 0;
 	a = getchar();
 
@@ -384,7 +384,7 @@ void menu_inquire(void) {
 			printf("error! please input the right number!\n");
 			putchar('\a');
 			getchar();
-			printf("¡òÇëÖØĞÂÊäÈë¹¦ÄÜÇ°µÄĞòºÅ½øÈëÏàÓ¦µÄ¹¤¾ß:¡¾   ¡¿\b\b");
+			printf("â—è¯·é‡æ–°è¾“å…¥åŠŸèƒ½å‰çš„åºå·è¿›å…¥ç›¸åº”çš„å·¥å…·:ã€   ã€‘\b\b");
 			a = getchar();
 		}
 		switch(a) {
@@ -398,22 +398,22 @@ void menu_inquire(void) {
 	}
 }
 
-/*¶ş¼¶²Ëµ¥Ö®ĞŞ¸ÄÊı¾İ*/
+/*äºŒçº§èœå•ä¹‹ä¿®æ”¹æ•°æ®*/
 void menu_amend(void) {
 	system("cls");
 	getchar();
 	while(1) {
 	system("cls");
-	printf("              ©³©¥©¥©¥©¥©¥©¥©¥©¥©·              \n");
-	printf("©³©¥©¥©¥©¥©¥©¥©Ï  ĞŞ¸ÄÊı¾İ·½Ê½  ©Ç©¥©¥©¥©¥©¥©¥©·\n");
-	printf("©§            ©»©¥©¥©¥©¥©¥©¥©¥©¥©¿            ©§\n");
-	printf("©§    ¡¾1¡¿É¾³ı¼ÇÂ¼          ¡¾3¡¿ÕûÀíÊı¾İ    ©§\n");
-	printf("©§                                            ©§\n");
-	printf("©§    ¡¾2¡¿ĞŞ¸Ä¼ÇÂ¼          ¡¾4¡¿·µ»Ø²Ëµ¥    ©§n");
-	printf("©§Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»Ò»©§\n");
-	printf("©§                                  ¹ºÎï³µv1.0©§\n");
-	printf("©»©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¿\n");
-	printf("¡òÇëÊäÈë¹¦ÄÜÇ°µÄĞòºÅ½øÈëÏàÓ¦µÄ¹¤¾ß:¡¾   ¡¿\b\b");
+	printf("              â”â”â”â”â”â”â”â”â”â”“              \n");
+	printf("â”â”â”â”â”â”â”â”«  ä¿®æ”¹æ•°æ®æ–¹å¼  â”£â”â”â”â”â”â”â”“\n");
+	printf("â”ƒ            â”—â”â”â”â”â”â”â”â”â”›            â”ƒ\n");
+	printf("â”ƒ    ã€1ã€‘åˆ é™¤è®°å½•          ã€3ã€‘æ•´ç†æ•°æ®    â”ƒ\n");
+	printf("â”ƒ                                            â”ƒ\n");
+	printf("â”ƒ    ã€2ã€‘ä¿®æ”¹è®°å½•          ã€4ã€‘è¿”å›èœå•    â”ƒn");
+	printf("â”ƒä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€ä¸€â”ƒ\n");
+	printf("â”ƒ                                  è´­ç‰©è½¦v1.0â”ƒ\n");
+	printf("â”—â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”›\n");
+	printf("â—è¯·è¾“å…¥åŠŸèƒ½å‰çš„åºå·è¿›å…¥ç›¸åº”çš„å·¥å…·:ã€   ã€‘\b\b");
 
 	int a = 0;
 	a = getchar();
@@ -422,22 +422,22 @@ void menu_amend(void) {
 		printf("error! please input the right number!\n");
 		putchar('\a');
 		getchar();
-		printf("¡òÇëÖØĞÂÊäÈë¹¦ÄÜÇ°µÄĞòºÅ½øÈëÏàÓ¦µÄ¹¤¾ß:¡¾   ¡¿\b\b");
+		printf("â—è¯·é‡æ–°è¾“å…¥åŠŸèƒ½å‰çš„åºå·è¿›å…¥ç›¸åº”çš„å·¥å…·:ã€   ã€‘\b\b");
 		a = getchar();
 		}
 		switch(a) {
 			case '1': Delete();
-			 printf("\n\n¡òÒÑ³É¹¦É¾³ıÖ¸¶¨Êı¾İ¡ò\n");
+			 printf("\n\nâ—å·²æˆåŠŸåˆ é™¤æŒ‡å®šæ•°æ®â—\n");
 			 system("pause");
 			 getchar();
 			break;
 			case '2': Amend();
-				 printf("\n\n¡òÒÑ³É¹¦ĞŞ¸ÄÖ¸¶¨Êı¾İ¡ò\n");
+				 printf("\n\nâ—å·²æˆåŠŸä¿®æ”¹æŒ‡å®šæ•°æ®â—\n");
 			 system("pause");
 				 getchar();
 			break;
 			case '3': Neaten();
-			 printf("\n\n¡òÊı¾İÒÑ³É¹¦°´ÕÕÑ§ºÅÖØĞÂÅÅÁĞ¡ò\n");
+			 printf("\n\nâ—æ•°æ®å·²æˆåŠŸæŒ‰ç…§å­¦å·é‡æ–°æ’åˆ—â—\n");
 			 system("pause");
 			 getchar();
 			break;
@@ -449,42 +449,42 @@ void menu_amend(void) {
 	}
 }
 
-/*ÊäÈëÊä³öÌáÊ¾À¸*/
+/*è¾“å…¥è¾“å‡ºæç¤ºæ */
 void menu_print_in(void) {
 	printf("-----------------------------------\n");
-	printf("ÉÌÆ·      ÊıÁ¿     ¼Û¸ñ            \n");
+	printf("å•†å“      æ•°é‡     ä»·æ ¼            \n");
 	printf("-----------------------------------\n");
 }
 void menu_print_out(void) {
 	printf("-----------------------------------\n");
-	printf("ÉÌÆ·      ÊıÁ¿     ¼Û¸ñ            \n");
+	printf("å•†å“      æ•°é‡     ä»·æ ¼            \n");
 	printf("-----------------------------------\n");
 }
-//³õÊ¼»¯½çÃæ
+//åˆå§‹åŒ–ç•Œé¢
 void InitFace()
 {
 	printf("\t\t*********************************************************\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
-	printf("\t\t*\t\t\t¹ºÎï³µÏµÍ³\t\t\t*\n");
+	printf("\t\t*\t\t\tè´­ç‰©è½¦ç³»ç»Ÿ\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
-	printf("\t\t*\t\t\t°æ±¾ºÅ£º1.0\t\t\t*\n");
+	printf("\t\t*\t\t\tç‰ˆæœ¬å·ï¼š1.0\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
-	printf("\t\t*\t\tÎ÷ÄÏÊ¯ÓÍ´óÑ§¼Æ¿ÆÔºÎïÁªÍø¹¤³Ì\t\t*\n");
+	printf("\t\t*\t\tè¥¿å—çŸ³æ²¹å¤§å­¦è®¡ç§‘é™¢ç‰©è”ç½‘å·¥ç¨‹\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
-	printf("\t\t*\t\t×Ş¼ÑÁ¼     \tĞ¤°²½¨\t\t\t*\n");
+	printf("\t\t*\t\té‚¹ä½³è‰¯     \tè‚–å®‰å»º\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
-	printf("\t\t*\t\t±àĞ´Ê±¼ä;   2018/7/12\t\t\t*\n");
+	printf("\t\t*\t\tç¼–å†™æ—¶é—´;   2018/7/12\t\t\t*\n");
 	printf("\t\t*********************************************************\n");
 	printf("\t\t");
-	system("pause");//ÊäÈëÈÎÒâ¼ü¼ÌĞø
-	system("cls");//ÇåÆÁ
+	system("pause");//è¾“å…¥ä»»æ„é”®ç»§ç»­
+	system("cls");//æ¸…å±
 }
-//ÃÜÂë½çÃæ
+//å¯†ç ç•Œé¢
 void EnterPassword()
 {
 	int count=0,ch,i;
@@ -492,12 +492,12 @@ void EnterPassword()
 	char input[100]={0};
 	printf("\t\t*********************************************************\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
-	printf("\t\t*\t\t\t¹ºÎï³µÏµÍ³\t\t\t*\n");
+	printf("\t\t*\t\t\tè´­ç‰©è½¦ç³»ç»Ÿ\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
-	printf("\t\t*\t\tÇëÊäÈëÁùÎ»ÃÜÂë½øÈëÏµÍ³£º\t\t*\n");
-	printf("\t\tÇëÊäÈëÃÜÂë£º");
+	printf("\t\t*\t\tè¯·è¾“å…¥å…­ä½å¯†ç è¿›å…¥ç³»ç»Ÿï¼š\t\t*\n");
+	printf("\t\tè¯·è¾“å…¥å¯†ç ï¼š");
 	ch=getch();
 	for(i=0;i<100;i++)
 	{
@@ -509,29 +509,31 @@ void EnterPassword()
 		}
 		else
 			printf("*");
-		ch=getch();//´Ó»º´æÇø¶ÁÈ¡»Ø³µ·û
+		ch=getch();//ä»ç¼“å­˜åŒºè¯»å–å›è½¦ç¬¦
 	}
 	if(strcmp(mima,input)==0)
 		{
 			printf("\n");
-			printf("\t\tÃÜÂëÕıÈ·!\n");
-			printf("\t\t3Ãëºó×Ô¶¯½øÈë¹ºÎï³µ!\n");
-			Sleep(3000);//ÑÓ³¤Ê±¼ä
+			printf("\t\tå¯†ç æ­£ç¡®!\n");
+			printf("\t\t3ç§’åè‡ªåŠ¨è¿›å…¥è´­ç‰©è½¦!\n");
+			Sleep(3000);//å»¶é•¿æ—¶é—´
 		}
 	else
 	{
 		char str[99]; 
-        gets(str);
-        MessageBox(NULL,TEXT("ÃÜÂë´íÎó"),TEXT("¾¯¸æ"),MB_OK);
+                gets(str);
+                MessageBox(NULL,TEXT("å¯†ç é”™è¯¯"),TEXT("è­¦å‘Š"),MB_OK);
+		printf("\t\t3ç§’åè‡ªåŠ¨é€€å‡º!\n");
+		Sleep(3000);//å»¶é•¿æ—¶é—´
 		exit(0);
 	}
-	system("cls");//ÇåÆÁ
+	system("cls");//æ¸…å±
 
 }
 
-/*Ö÷º¯Êı*/
+/*ä¸»å‡½æ•°*/
 int main(void) {
-	//SetConsoleTitle(L"C++¹ºÎï³µÏµÍ³");
+	//SetConsoleTitle(L"C++è´­ç‰©è½¦ç³»ç»Ÿ");
 	EnterPassword();
 	InitFace();
 	menu();
