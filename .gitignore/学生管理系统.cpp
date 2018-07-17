@@ -4,7 +4,7 @@
 #include <windows.h>
 #include<conio.h>
 # define LEN sizeof(struct Goods)
-
+int	j=1;
 struct Goods {
 char num[10];  /*数量*/
 char name[20]; /*商品名称*/
@@ -344,13 +344,13 @@ void menu_add(void) {
 	}
 	switch(a) {
 		case '1': WriteData_wb(Creat(Creat_num()));
-		 printf("\n◎新建文件成功且数据已成功保存◎\n");
+		 MessageBox(NULL,TEXT("新建文件成功"),TEXT("成功！"),MB_OK);
 			 system("pause");
 		 system("cls");
 		 menu_add();
 		break;
 		case '2': WriteData_ab(Creat(Creat_num()));
-			 printf("\n◎数据已成功添加◎\n");
+			 MessageBox(NULL,TEXT("添加成功"),TEXT("成功！"),MB_OK);
 			 system("pause");
 		 system("cls");
 		 menu_add();
@@ -384,7 +384,7 @@ void menu_inquire(void) {
 			printf("error! please input the right number!\n");
 			putchar('\a');
 			getchar();
-			printf("◎请重新输入功能前的序号进入相应的工具:【   】\b\b");
+			printf("◎请重新输入功能前的序号进入相应的工具:");
 			a = getchar();
 		}
 		switch(a) {
@@ -413,7 +413,7 @@ void menu_amend(void) {
 	printf("┃一一一一一一一一一一一一一一一一一一一一一一┃\n");
 	printf("┃                                  购物车v1.0┃\n");
 	printf("┗━━━━━━━━━━━━━━━━━━━━━━┛\n");
-	printf("◎请输入功能前的序号进入相应的工具:【   】\b\b");
+	printf("◎请输入功能前的序号进入相应的工具:");
 
 	int a = 0;
 	a = getchar();
@@ -422,7 +422,7 @@ void menu_amend(void) {
 		printf("error! please input the right number!\n");
 		putchar('\a');
 		getchar();
-		printf("◎请重新输入功能前的序号进入相应的工具:【   】\b\b");
+		printf("◎请重新输入功能前的序号进入相应的工具:");
 		a = getchar();
 		}
 		switch(a) {
@@ -437,7 +437,7 @@ void menu_amend(void) {
 				 getchar();
 			break;
 			case '3': Neaten();
-			 printf("\n\n◎数据已成功按照学号重新排列◎\n");
+			 printf("\n\n◎数据已成功按照数量重新排列◎\n");
 			 system("pause");
 			 getchar();
 			break;
@@ -490,6 +490,7 @@ void EnterPassword()
 	int count=0,ch,i;
 	char mima[100]={"000000\0'"};
 	char input[100]={0};
+	
 	printf("\t\t*********************************************************\n");
 	printf("\t\t*\t\t\t\t\t\t\t*\n");
 	printf("\t\t*\t\t\t购物车系统\t\t\t*\n");
@@ -520,15 +521,18 @@ void EnterPassword()
 		}
 	else
 	{
+		j=j+1;
 		char str[99]; 
-                gets(str);
-                MessageBox(NULL,TEXT("密码错误"),TEXT("警告"),MB_OK);
-		printf("\t\t3秒后自动退出!\n");
+		gets(str);
+		MessageBox(NULL,TEXT("密码错误"),TEXT("警告"),MB_OK);
+		if(j==4){
+		MessageBox(NULL,TEXT("密码错误3次，3秒后自动退出"),TEXT("错误"),MB_OK);
 		Sleep(3000);//延长时间
-		exit(0);
+		exit(0);}
+		else system("cls");EnterPassword();
 	}
 	system("cls");//清屏
-
+	
 }
 
 /*主函数*/
@@ -539,4 +543,3 @@ int main(void) {
 	menu();
 	return 0; 
 }
-
